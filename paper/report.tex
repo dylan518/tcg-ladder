@@ -18,7 +18,7 @@
 \professor{Arjen Stolk}
 \duedate{November 18, 2026}
 
-\abstract{How does a shared understanding spread through a group? In the Tacit Communication Game, a Sender conveys a hidden goal to a Receiver using only movements on a grid. We ran it as an online tournament in which 16 players met a series of partners over three phases (240 rounds). Players learn two things from feedback: how to produce signals others understand (\emph{learning to signal}) and how to interpret a partner's signals (\emph{learning to read}). If understanding is a shared \emph{code}, both should carry over to a new partner; if it is a \emph{pact} between two people, neither should. On the \emph{asymmetric} account proposed here, clearer signals carry over directly, whereas reading must be relearned with each partner. A neutral reader with no history with the Sender read signals correctly more often in each phase (36\%, 46\%, 61\%), yet real Receivers succeeded less often with a new partner (24\%; McNemar $p = .004$). Signals set a ceiling: when the neutral reader could not read a signal, real partners succeeded only 21\% of the time, against 48\% when it could. Reading also appeared to improve: with signal clarity constant, Receivers meeting a new partner succeeded more often the second time (40\% vs.\ 24\%, $p = .09$). All tournaments shifted toward the form easiest for an outsider to read. Small samples, simulated readers, and partner reunions limit these conclusions. The results suggest that understanding spreads through a group by way of its signals: the forms anyone can read travel and become common.}
+\abstract{How does a shared understanding spread through a group? In the Tacit Communication Game, a Sender conveys a hidden goal to a Receiver using only movements on a grid. We ran it as an online tournament in which 16 players met a series of partners over three phases (240 rounds). Players learn two things from feedback: how to produce signals others understand (\emph{learning to signal}) and how to interpret a partner's signals (\emph{learning to read}). If understanding is a shared \emph{code}, both should carry over to a new partner; if it is a \emph{pact} between two people, neither should. On the \emph{asymmetric} account proposed here, clearer signals carry over directly, whereas reading must be relearned with each partner. A neutral reader with no history with the Sender read signals correctly more often in each phase (36\%, 46\%, 61\%), yet real Receivers succeeded less often with a new partner (24\%; McNemar $p = .004$). In a counterfactual test with simulated Receivers, later signals improved decoding by 14 percentage points, 95\% CI [5, 22], and more Receiver history by 5 [$-4$, 14], a difference that was not itself reliable. Players' signals moved toward their current partner's (weight 0.13, $p = .002$), and all tournaments shifted toward the form easiest for an outsider to read. Small samples, simulated readers, and partner reunions limit these conclusions. The results suggest that understanding spreads through a group by way of its signals: the forms anyone can read travel and become common.}
 \keywords{Tacit Communication Game, conceptual pacts, conventions, mutual understanding, communication, large language models}
 
 \begin{document}
@@ -45,7 +45,7 @@ Neither position fully fits what is known about groups. Communities whose member
 
 \subsection{The Present Study}
 
-The code and pact accounts treat the two kinds of learning alike: either both carry over or neither does. We propose a third possibility, the \emph{asymmetric} account, on which they come apart. What a Sender learns is how to make a signal clearer, and a clearer signal is clearer to anyone, so learning to signal travels to a new partner. What a Receiver learns is largely how one particular Sender signals, so with a new Sender reading must be relearned, though perhaps faster each time. The two also differ in what they can achieve: a Receiver cannot recover what a signal does not carry, so the clarity of the signal sets a ceiling on understanding. Shared understanding in a group would then be assembled from many pair-level agreements, with the legible parts spreading.
+The code and pact accounts treat the two kinds of learning alike: either both carry over or neither does. We propose a third possibility, the \emph{asymmetric} account, on which they come apart. What a Sender learns is how to make a signal clearer, and a clearer signal is clearer to anyone, so learning to signal travels to a new partner. What a Receiver learns is largely how one particular Sender signals, so with a new Sender reading must be relearned, though perhaps faster each time. Shared understanding in a group would then be assembled from many pair-level agreements, with the legible parts spreading.
 
 To test these accounts, we rebuilt the TCG \parencite{deruiter2010} as an online tournament in which the experimenter controlled pairing: players were paired for ten rounds, re-paired for ten more, and re-paired again for a final ten. Figure~\ref{fig:hyp} shows what each account predicts for two quantities: how often a neutral reader with no history with the Sender reads the Sender's signals correctly (a measure of signalling), and how often the real partner succeeds (signalling and reading together).
 
@@ -135,7 +135,7 @@ To test whether the partner pull could account for the group-level pattern, we f
 % ======================================================================
 \section{Results}
 
-The results fall into three findings: Senders' signals became clearer to anyone while understanding with a new partner lagged behind; the clarity of the signal set a ceiling on understanding, within which reading appeared to recover; and groups converged on the most readable form of signal, pair by pair.
+The results fall into three findings: Senders' signals became clearer to anyone while understanding with a new partner lagged behind; later signals, more clearly than Receiver experience, improved reading; and groups converged on the most readable form of signal, pair by pair.
 
 \subsection{Signals Became Clearer, and New Partners Lagged Behind (H1a, H1b)}
 
@@ -148,24 +148,9 @@ Senders' signals became steadily easier for an outsider to read. The neutral rea
 \figurenote{The same signals, read by a neutral reader with no history (blue) and by the players' real partners (orange). Bands are 95\% Wilson confidence intervals; $n = 80$ Sender turns per phase.}
 \end{figure}
 
-\subsection{The Signal Set a Ceiling, and Reading Recovered Within It (H1c; Exploratory)}
+\subsection{Later Signals Helped; the Reading Effect Was Uncertain (H1c)}
 
-In an unplanned analysis, we split rounds by whether the neutral reader had read the signal correctly (Table~\ref{tab:ceiling}). When it had not, real partners succeeded only 21\% of the time, in every phase and however long the pair had played together. When it had, they succeeded 48\% of the time ($p < .001$). A signal that an outsider cannot read is seldom rescued by familiarity with the Sender: the signal sets a ceiling on what any reader can recover.
-
-\begin{table}[t]
-\caption{Real Partners' Success by Whether a Neutral Reader Could Read the Signal}
-\label{tab:ceiling}
-\begin{tabular}{lccc}
-\toprule
-Signal & Phase 1 & Phase 2 & Phase 3 \\
-\midrule
-Readable to the neutral reader & 41\% (12/29) & 27\% (10/37) & 67\% (33/49) \\
-Unreadable to the neutral reader & 22\% (11/51) & 21\% (9/43) & 19\% (6/31) \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Within that ceiling, reading appeared to recover. Receivers meeting a new partner succeeded more often in phase 3 than in phase 2 (40\% vs.\ 24\%, $p = .09$), although the signals were about equally clear to the neutral reader. The planned counterfactual test with simulated Receivers pointed the same way without settling the matter: later signals improved decoding by 14 percentage points, 95\% CI [5, 22], and more Receiver history by 5 points [$-4$, 14], and the two effects did not differ reliably. H1c is therefore supported in direction only: Senders' improvement is clear, whereas the reading effect is positive in both comparisons and established in neither.
+To separate the two sides, the counterfactual test gave simulated Receivers early or late histories and had them read early or late signals. Later signals improved decoding by 14 percentage points, 95\% CI [5, 22]; more Receiver history improved it by 5 points [$-4$, 14], and the two effects did not differ reliably. H1c is therefore supported in direction only: Senders' improvement is clear, whereas the reading effect is positive but not established.
 
 \subsection{Groups Converged on the Most Readable Form, Pair by Pair (H1d, H1e)}
 
@@ -183,17 +168,17 @@ Neither model reproduced these patterns in full. The generative model built from
 % ======================================================================
 \section{Discussion}
 
-We asked how shared understanding spreads through a group: like a code, in which everything a pair has learned transfers to any partner, or like a pact, in which it resets with each one. Neither account fits alone. Signals became steadily more legible to a reader who had never met the Sender, as a code account predicts, yet real partners misread these clearer signals in the phase after a switch, as a pact account predicts. We therefore reject the null hypotheses for H1a and H1b, for the pairwise form of H1d, and, for the direction of change, H1e; H1c was supported in direction only. The evidence favors the asymmetric account: clearer signals carry over to new partners directly, reading has to be relearned with each partner, and the signal sets a ceiling on how much any reader can understand. It does not show that reading fails to improve.
+We asked how shared understanding spreads through a group: like a code, in which everything a pair has learned transfers to any partner, or like a pact, in which it resets with each one. Neither account fits alone. Signals became steadily more legible to a reader who had never met the Sender, as a code account predicts, yet real partners misread these clearer signals in the phase after a switch, as a pact account predicts. We therefore reject the null hypotheses for H1a and H1b, for the pairwise form of H1d, and, for the direction of change, H1e; H1c was supported in direction only. The evidence favors the asymmetric account: clearer signals carry over to new partners directly, while reading has to be relearned with each partner. It does not show that reading fails to improve.
 
 These results suggest one way that conceptual pacts \parencite{brennan1996,garrod1987} could give rise to community conventions \parencite{garrod1994,fay2010}. Each pair negotiates its own agreement, but only the Sender's side of it, a more explicit signal, is readable to outsiders; the Receiver's side is fitted to one Sender and must be rebuilt with the next. As players rotate, the forms that anyone can read are the ones that survive contact with a new partner, which mirrors the finding that signs refined in a community are easier for outsiders to interpret \parencite{fay2008} and fits the conceptual alignment framework \parencite{stolk2016,stolk2020}. A shared vocabulary, on this account, need not be agreed upon by anyone: it can emerge because legible forms survive each change of partner and idiosyncratic ones do not.
 
 \subsection{Limitations and Future Directions}
 
-These conclusions are limited in several ways. The sample was small (16 players, 240 rounds) and drawn by convenience, several effects were not statistically clear, and we did not correct for multiple comparisons; the ceiling and group-level analyses were exploratory. Reunions confound partner familiarity with tournament. The neutral reader and the counterfactual Receivers were language models: the reader had seen games from other tournaments and may favor transparent forms, and simulated Receivers adapt less than people do, so we cannot say how much people's reading improved. The task is also a wordless, nine-second game, and how far the findings generalize to conversation is unknown. Two steps would address the main gaps: tournaments with a balanced schedule in which no pair is reunited, and real people, rather than a language model, reading signals from players they have never met, early and late in their own session.
+These conclusions are limited in several ways. The sample was small (16 players, 240 rounds) and drawn by convenience, several effects were not statistically clear, and we did not correct for multiple comparisons; the group-level analysis was exploratory. Reunions confound partner familiarity with tournament. The neutral reader and the counterfactual Receivers were language models: the reader had seen games from other tournaments and may favor transparent forms, and simulated Receivers adapt less than people do, so we cannot say how much people's reading improved. The task is also a wordless, nine-second game, and how far the findings generalize to conversation is unknown. Two steps would address the main gaps: tournaments with a balanced schedule in which no pair is reunited, and real people, rather than a language model, reading signals from players they have never met, early and late in their own session.
 
 \subsection{Conclusion}
 
-When strangers build a shared language without words, what they learn has two halves that behave differently. Senders learn to make their meaning legible, and that legibility travels to new partners. Receivers learn to read a particular partner, and that reading must be learned again with the next. What a signal does not carry, no reader can recover. Shared signals in a group, like the words of an emerging language, may thus be assembled from many pair-level agreements, with the most legible forms being the ones that spread.
+When strangers build a shared language without words, what they learn has two halves that behave differently. Senders learn to make their meaning legible, and that legibility travels to new partners. Receivers learn to read a particular partner, and that reading must be learned again with the next. Shared signals in a group, like the words of an emerging language, may thus be assembled from many pair-level agreements, with the most legible forms being the ones that spread.
 
 \printbibliography
 
@@ -206,7 +191,7 @@ The code for the online game, all analysis scripts, and the source of this repor
 \item \texttt{analysis/tokenize\_games.py}, \texttt{analysis/models/readable.py}: preprocessing of key presses into readable steps.
 \item \texttt{analysis/models/cf\_encode\_decode.py}: neutral-reader legibility and the $2 \times 2$ counterfactual decoding.
 \item \texttt{analysis/models/strategy\_embed.py}, \texttt{analysis/models/eval\_embeddings.py}: triplet judgments and the style embedding.
-\item \texttt{analysis/models/reading\_ceiling.py}: exploratory analyses of the signal ceiling and of reading with new partners.
+\item \texttt{analysis/models/reading\_ceiling.py}: bootstrap comparison of the Sender and Receiver effects, and further exploratory analyses not reported here.
 \item \texttt{analysis/models/convergence.py}: distance analyses and the style-update regressions.
 \item \texttt{analysis/label\_strategies.py}: hand-coded signal forms (group-level form analysis).
 \item \texttt{analysis/models/group\_model.py}: the generative model and its simulations.
