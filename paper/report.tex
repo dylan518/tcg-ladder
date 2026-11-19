@@ -56,7 +56,7 @@ To test these accounts, we rebuilt the TCG \parencite{deruiter2010} as an online
 \figurenote{Schematic predictions, not data. Blue: proportion of a Sender's signals read correctly by a neutral reader with no history with that Sender (signalling). Orange: success with the real partner (signalling and reading together). P1--P3 are the three partner phases.}
 \end{figure}
 
-Our hypothesis, stated in the form of the scientific method, was: \emph{If} players learn with each partner both how to signal and how to read, and learning to signal carries over to a new partner directly while reading must be relearned, \emph{then} we might expect signals to keep getting clearer across partner changes while success drops just after each change. This yields four predictions, each with a null alternative:
+Our hypothesis, stated in the form of the scientific method, was: \emph{If} players learn with each partner both how to signal and how to read, and learning to signal carries over to a new partner directly while reading must be relearned, \emph{then} we might expect signals to keep getting clearer across partner changes while success drops just after each change. This yields four predictions and one exploratory prediction, each with a null alternative:
 \begin{enumerate}
 \item[H1a.] Signals become more readable to a neutral reader across phases, even though partners change (H0: legibility does not change across phases).
 \item[H1b.] In the phase after a partner switch, real Receivers succeed less often than a neutral reader does on the same signals (H0: real and neutral success do not differ).
@@ -79,7 +79,7 @@ Participation was voluntary, players joined under a first name or nickname, and 
 
 The study used a within-subjects design with \emph{partner phase} (phase 1, first partner; phase 2, new partner; phase 3, new or reunited partner) as the independent variable. The dependent variables were (a) communicative success on each round (the Receiver placed the token on the correct tile with the correct orientation), (b) the legibility of each Sender signal, measured as whether a neutral reader read it correctly, and (c) the position of each Sender signal in a style space (described below). Control variables were held constant across phases: the board, the time limit, the goal set (each goal was used equally often), and the feedback players received.
 
-The partner schedule was not perfectly balanced. In phase 2, every pair was new except one pair in tournament 2. In phase 3, all three pairs in tournament 1 and one pair in tournament 2 were \emph{reunited} with their phase-1 partner, whereas tournament 3 used new partners throughout. We therefore report phase-3 rounds separately for new and reunited partners where it matters.
+The partner schedule was not perfectly balanced. In phase 2, every pair was new except one pair in tournament 2. In phase 3, all three pairs in tournament 1 and one pair in tournament 2 were \emph{reunited} with their phase-1 partner, whereas tournament 3 used new partners throughout. Because reunions were concentrated in tournament 1, they are a confound that we return to in the Discussion.
 
 \subsection{Materials and Apparatus}
 
@@ -108,7 +108,7 @@ To measure how readable a signal was independent of any particular partner, we u
 
 \subsubsection{Separating Signalling From Reading: A Counterfactual Design}
 
-To separate what Senders and Receivers each contributed, we built a $2 \times 2$ counterfactual. Within each tournament, each real player's history was cut off either at the end of phase 1 (\emph{early Receiver}) or at the start of phase 3 (\emph{late Receiver}) and given to a simulated Receiver. Each version then decoded eight phase-1 signals and eight phase-3 signals sent by \emph{other} players (never signals that player had actually received), for 512 decodes in all. The Sender effect is the gain from later signals with the Receiver held fixed; the Receiver effect is the gain from more history with the signals held fixed; and their interaction asks whether late signals work especially well for late Receivers, as a shared convention would predict. Confidence intervals were obtained by resampling Receivers (3,000 bootstrap samples).
+To separate what Senders and Receivers each contributed, we built a $2 \times 2$ counterfactual. Within each tournament, each real player's history was cut off either at the end of phase 1 (\emph{early Receiver}) or at the start of phase 3 (\emph{late Receiver}) and given to a simulated Receiver. Each version then decoded eight phase-1 signals and eight phase-3 signals sent by \emph{other} players (never signals that player had actually received), for 512 decodes in all. The Sender effect is the gain from later signals with the Receiver held fixed; the Receiver effect is the gain from more history with the signals held fixed. Confidence intervals were obtained by resampling Receivers (3,000 bootstrap samples).
 
 \subsubsection{Measuring Style: An Embedding Built From Similarity Judgments}
 
