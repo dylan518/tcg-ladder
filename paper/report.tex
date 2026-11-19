@@ -135,7 +135,7 @@ To test whether the partner pull could account for the group-level pattern, we f
 % ======================================================================
 \section{Results}
 
-The results fall into three findings: Senders' signals became clearer to anyone while understanding with a new partner lagged behind; later signals, more clearly than Receiver experience, improved reading; and groups converged on the most readable form of signal, pair by pair.
+The results fall into three findings: Senders' signals became clearer to anyone while understanding with a new partner lagged behind; later signals, more clearly than Receiver experience, improved reading; and players in every group drifted toward the most readable signal, picking it up from their partners.
 
 \subsection{Signals Became Clearer, and New Partners Lagged Behind (H1a, H1b)}
 
@@ -152,9 +152,9 @@ Senders' signals became steadily easier for an outsider to read. The neutral rea
 
 To separate the two sides, the counterfactual test gave simulated Receivers early or late histories and had them read early or late signals. Later signals improved decoding by 14 percentage points, 95\% CI [5, 22]; more Receiver history improved it by 5 points [$-4$, 14], and the two effects did not differ reliably. H1c is therefore supported in direction only: Senders' improvement is clear, whereas the reading effect is positive but not established.
 
-\subsection{Groups Converged on the Most Readable Form, Pair by Pair (H1d, H1e)}
+\subsection{Groups Converged on the Most Readable Signal (H1d, H1e)}
 
-Tournaments did not develop dialects: turns from the same tournament were no more alike in form than turns from different tournaments ($p = .31$). Instead, all tournaments moved toward the same \emph{pointer} form, a wiggle from the goal toward the way the goal points, which rose from 15\% to 36\% of turns between phases 1 and 2 ($p = .003$; Figure~\ref{fig:lex}). This was the easiest form for the neutral reader (71\% correct vs.\ 39\% for other forms). The shift was not a stable convention, since the pointer share fell back to 21\% in phase 3, so H1e was supported for the direction of change only. The pull came from partners rather than from the group: each player's next signal moved toward their current partner's latest signal (weight 0.13, $p = .002$) but not toward a random non-partner's, supporting H1d in its pairwise form.
+Each tournament could have invented its own private way of signalling. None did: signals from the same tournament were no more alike than signals from different tournaments ($p = .31$). Instead, players in every tournament drifted toward the same signal, the \emph{pointer}: a wiggle from the goal tile toward the direction the goal faces. Pointers rose from 15\% of turns in phase 1 to 36\% in phase 2 ($p = .003$; Figure~\ref{fig:lex}), and they were the easiest signal for an outsider to read (71\% correct vs.\ 39\% for all other signals). The pointer did not become a fixed rule, however; in phase 3 it fell back to 21\% of turns. H1e was therefore supported only in part: groups moved toward the readable signal but did not settle on it.
 
 \begin{figure}[t]
 \caption{Signal Forms by Tournament and Phase}
@@ -163,7 +163,9 @@ Tournaments did not develop dialects: turns from the same tournament were no mor
 \figurenote{Rule-based form label of every Sender turn. The pointer wiggle (dark blue) was the most legible form for the neutral reader (71\% correct vs.\ 39\% for other forms).}
 \end{figure}
 
-Neither model reproduced these patterns in full. The generative model built from the partner pulls matched partner alignment but not the success curve, and language models playing whole tournaments coordinated far more easily than people did, with no cost of switching partners.
+Players picked up signals from the person they were playing with, not from the group as a whole. Each player's next signal moved toward their current partner's most recent signal (weight 0.13, $p = .002$) and did not move toward the signal of a random player who was not their partner. This supports H1d.
+
+Finally, two simulations fell short of the human data. A model that used only the partner pull reproduced how partners' signals grew alike, but not how often pairs succeeded. And language models playing the whole tournament succeeded more often than people did and showed no drop after a partner switch.
 
 % ======================================================================
 \section{Discussion}
