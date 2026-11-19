@@ -1,0 +1,307 @@
+\documentclass[stu,11pt,floatsintext,donotrepeattitle]{apa7}
+\usepackage[american]{babel}
+\usepackage{newtxtext,newtxmath}
+\usepackage{csquotes}
+\usepackage[style=apa,backend=biber]{biblatex}
+\addbibresource{refs_apa.bib}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\graphicspath{{figures/}}
+\AtBeginDocument{\hypersetup{hidelinks}}
+
+\title{How Groups Build Shared Understanding: Signalling Travels, Reading Stays Local in the Tacit Communication Game}
+\shorttitle{How Groups Build Shared Understanding}
+\authorsnames{Dylan Wilson}
+\authorsaffiliations{Department of Psychological and Brain Sciences, Dartmouth College}
+\course{PSYC 63: Experimental Study of Human Interaction}
+\professor{Arjen Stolk}
+\duedate{November 18, 2026}
+
+\abstract{How does a group come to share an understanding, and what happens to it when members change partners? We studied this question in an online tournament based on the Tacit Communication Game, in which a Sender conveys a hidden goal to a Receiver using only movements on a grid. In the tournament, 16 players rotated partners across three phases (240 rounds, every key press logged). Feedback after each round helps players learn to produce signals a partner can understand (\emph{learning to signal}) and to interpret the signals a partner produces (\emph{learning to read}). Three accounts differ in what carries over to a new partner. If understanding is a shared \emph{code}, both kinds of learning carry over; if it is a \emph{pact} between two particular people, neither does. On the \emph{asymmetric} account proposed here, learning to signal carries over because clearer signals are easier for anyone to read, whereas learning to read does not because it is tuned to one partner's signals. Consistent with this account, a neutral reader with no history with a Sender interpreted signals correctly more often in each successive phase (36\%, 46\%, 61\%). Yet real Receivers succeeded less often just after partners switched (24\%), leaving a significant gap between what could be read and what was read correctly (McNemar $p = .004$). In a counterfactual design, later signals improved reading accuracy by 14 percentage points, 95\% CI [5, 22], whereas more Receiver history added only 5 points [$-4$, 14]. In a style space built from similarity judgments, each player's next signal moved toward their current partner's latest signal (weight 0.13, $p = .002$) but not toward a random non-partner's latest signal. The tournaments did not develop private dialects. Instead, all shifted toward the same form, a \enquote{pointer} wiggle that was easiest for an outsider to read (71\% vs.\ 39\%). A fitted model of these shifts toward partners reproduced partner alignment but not the success curve. Small samples, simulated Receivers, and partner reunions in two tournaments limit these conclusions. The results suggest that understanding spreads through a group by way of its signals: each pair reaches its own agreement, but the signal forms that anyone can read are the ones that travel to new partners and become common.}
+\keywords{Tacit Communication Game, conceptual pacts, conventions, mutual understanding, communication, large language models}
+
+\begin{document}
+\maketitle
+
+% ======================================================================
+\section{Introduction}
+
+Two strangers who cannot speak to each other and who see the task from different vantage points face a problem: how can a movement made by one come to mean the same thing to both? The Tacit Communication Game \parencite[TCG;][]{deruiter2010} poses this problem in a simple form. A Sender uses only the movements of a token on a $3 \times 3$ grid to tell a Receiver where a hidden goal is and which way it faces. With neither words nor conventional signs to rely on, the Sender must find a movement the Receiver will read as a signal rather than as a step taken simply to move the token. The Receiver, in turn, must work out what the Sender means by it \parencite{stolk2016}. Pairs typically settle on a movement resembling a \enquote{wiggle}: a repeated step from the goal toward the neighboring tile in the direction the goal faces \parencite{blokpoel2012}.
+
+It is well established that two people can arrive at a shared understanding. Less is known about what happens when that understanding has to travel beyond the pair: how others come to share it, and what changes when people move from one partner to another. The problem is familiar outside the laboratory. A newcomer to a group, a student entering a discipline, or a speaker who encounters a different dialect may each have occasion to ask whether what worked with one person will work with another. The same question bears on how groups come to share signals in the first place. Languages are not invented by committees. They emerge from countless exchanges between particular people, yet come to be shared by whole communities. The present study examines how understanding spreads and changes within a group when the researchers determine who interacts with whom and the participants invent their signals from scratch.
+
+\subsection{Two Kinds of Learning}
+
+A player in the TCG faces two distinct tasks. As a Sender, the player learns which movements a partner is likely to understand. We call this \emph{learning to signal}. As a Receiver, the player learns what a partner's movements are likely to mean. We call this \emph{learning to read}. The two tasks differ, but both are learned through trial and feedback. After each round, both players find out whether the Receiver interpreted the signal correctly. Each can then retain what worked or reconsider what did not, much as learners in signalling games adjust their behavior in light of success and failure \parencite{skyrms2010}. The distinction gives us a concrete way to ask how understanding spreads through a group: when a player meets a new partner, which kind of learning, if either, carries over?
+
+\subsection{Code or Pact?}
+
+Two classic accounts offer opposite answers. On the first, communication works like a \emph{code}: a sender uses a key to turn an intended meaning into a message, and a receiver uses the same key to recover that meaning \parencite[as critiqued by][]{stolk2016}. If shared understanding depended on such a key, what two people learned together should not be useful only to them. Both kinds of learning should carry over to a new partner who knew the same key, so changing partners should cost little.
+
+On the second view, understanding rests on a \emph{conceptual pact}: a temporary agreement between two people about how to talk about something \parencite{brennan1996,garrod1987}. In tasks where pairs must identify what is being referred to, their descriptions soon become shorter and more consistent \parencite{clark1986}. Speakers are more likely to keep using an agreed description with the partner who shares it than with a new partner \parencite{brennan1996}, and listeners take longer to interpret a description when a familiar partner departs from the agreement \parencite{metzing2003}. More generally, speakers shape what they say for the people who will hear it \parencite{clark1982}. On the conceptual alignment account, communication succeeds insofar as both people share a model of what a signal means \emph{to this partner} \parencite{stolk2016}. That shared context is something the two people build together \parencite{stolk2020}. If understanding were nothing more than a pact, neither kind of learning would carry over. With each new partner, understanding would begin again.
+
+Neither position fully accounts for what happens in groups. Communities in which members change partners settle on shared conventions more readily than isolated pairs do \parencite{garrod1994,fay2010}. Outsiders also find conventions easier to understand when they arise in a community rather than within a single pair \parencite{fay2008}. An agreement that works for two people, then, need not remain useful only to them. Over many interactions, such agreements seem to give rise to conventions that work more widely \parencite{hawkins2023}. Yet how this happens, and what carries over from one partnership to the next, have rarely been tested directly. As far as we know, no study of changing partners has distinguished what Senders learn about making themselves understood from what Receivers learn about interpreting the signals they encounter.
+
+\subsection{The Present Study}
+
+The code and pact accounts agree on one point: learning to send a signal and learning to read it either both carry over to a new partner or neither does. We propose a third possibility, the \emph{asymmetric} account, which separates the two. A Sender learns to make a signal clearer. Because the gain in clarity is not specific to the person for whom the signal was first made, it carries over to a new partner. A Receiver, by contrast, learns how a particular Sender signals, and that knowledge does not carry over to a different Sender. Unlike in the code account, the new partner must still learn to read the signals. Unlike in the pact account, the Sender need not begin again. On this view, something like a shared vocabulary could grow out of agreements between pairs as the signals that are clearer to others spread through the group.
+
+To test these accounts, we rebuilt the TCG \parencite{deruiter2010} as an online tournament in which the experimenter assigned partners. Each player spent ten rounds with one partner, ten rounds with a new partner, and a final ten rounds with another partner. Figure~\ref{fig:hyp} sets out what each account predicts for two measures. The first is how often a neutral reader with no history with the Sender interprets the Sender's signals correctly. This measures what the Sender has learned about signalling. The second is how often the Sender's actual partner interprets those signals correctly. That measure reflects what the Sender and partner can do together: one provides the signal, and the other reads it.
+
+\begin{figure}[t]
+\caption{Predictions of Three Accounts of Shared Understanding}
+\label{fig:hyp}
+\includegraphics[width=\linewidth]{figH_hypotheses}
+\figurenote{Schematic predictions, not data. Blue: proportion of a Sender's signals read correctly by a neutral reader with no history with that Sender (signalling). Orange: success with the real partner (signalling and reading together). P1--P3 are the three partner phases.}
+\end{figure}
+
+The hypothesis distinguishes learning how to signal from learning how to read a partner's signals. \emph{If} players learn both with each partner, but only what they learn about signalling carries over to a new partner, \emph{then} signals should become clearer across partner changes even as success dips just after each switch. This gives four predictions and an exploratory prediction, each with a null alternative:
+\begin{enumerate}
+\item[H1a.] Signals become easier for a neutral reader to interpret across phases, even as partners change (H0: legibility does not change across phases).
+\item[H1b.] Just after a partner switch, real Receivers succeed less often than a neutral reader given the same signals (H0: real and neutral success do not differ).
+\item[H1c.] When early and late signals are crossed with early and late Receivers, using later signals improves success more than using later Receivers (H0: Sender and Receiver effects are equal).
+\item[H1d.] Each player's signalling style moves closer to that of their current partner, but not to that of the group as a whole (H0: no greater pull from the current partner than from a non-partner).
+\item[H1e.] (Exploratory.) Across the group, players converge on forms that anyone can read rather than on forms specific to their own tournament (H0: the mix of forms does not shift toward legible forms, or shifts toward tournament-specific forms).
+\end{enumerate}
+A code account predicts H1a but not H1b. A pact account predicts H1b but not H1a. Only the asymmetric account predicts both.
+
+% ======================================================================
+\section{Method}
+
+\subsection{Participants}
+
+Sixteen Dartmouth College students took part, all recruited in and around the college library as a convenience sample. They played in three tournaments with six, six, and four players, respectively.
+% TODO(author): add age range, gender, how consent was obtained, and whether participants were compensated.
+Participation was voluntary. Players joined using a first name or nickname, and no identifying information was stored with the game logs.
+
+\subsection{Design}
+
+The study used a within-subjects design in which \emph{partner phase} was the independent variable (phase 1, first partner; phase 2, new partner; phase 3, new or reunited partner). The dependent variables were (a) communicative success on each round, defined as the Receiver placing the token on the correct tile in the correct orientation; (b) the legibility of each Sender signal, measured by whether a neutral reader read the signal correctly; and (c) the position of each Sender signal in a style space (described below). The board, time limit, goal set (each goal was used equally often), and feedback given to players were held constant across phases.
+
+The partner schedule was not fully balanced. In phase 2, all pairs were new except for one pair in tournament 2. In phase 3, all three pairs in tournament 1 and one pair in tournament 2 were \emph{reunited} with their phase-1 partners, whereas tournament 3 used new partners throughout. Where relevant, we therefore report phase-3 rounds separately for new and reunited partners.
+
+\subsection{Materials and Apparatus}
+
+We reimplemented the TCG \parencite{deruiter2010} as a web application (Node.js server, browser client) based on the course's \enquote{Crack the Vault} version. Players could join from their own devices, and the experimenter controlled pairing through an administrator dashboard. In each round, one player took the role of Sender and saw the goal: one of nine tiles for the Receiver's triangle and one of eight directions for it to point. The Sender used the arrow keys to move a circle for up to nine seconds (20 seconds on each player's first turn in each role) while the Receiver watched. The Receiver then placed and rotated the triangle. The only feedback either player saw was SUCCESS or FAIL. Roles alternated every round. Every key press and its timing were logged.
+
+\begin{figure}[t]
+\caption{The Task and the Tournament Design}
+\label{fig:game}
+\includegraphics[width=\linewidth]{fig1_game}
+\figurenote{Left: one round. The goal (dashed triangle) is the middle-left tile, pointing right; the Sender goes to the goal tile and then steps back and forth toward the way the goal points, and the Receiver places and turns its own triangle. Right: the re-pairing schedule for an example six-player tournament. Hatched pairs in phase 3 are reunions, which occurred in tournament 1 and for one pair in tournament 2.}
+\end{figure}
+
+\subsection{Procedure}
+
+Players opened the game on their devices, entered a name, and waited in a lobby. Once all players had joined, the experimenter started the tournament. Each tournament consisted of three phases of ten rounds. Between phases, all players saw a message telling them they would play with a different partner, and the server assigned new partners according to the schedule (Figure~\ref{fig:game}). The 30 rounds of a tournament took 10 to 11 minutes of play (10.6, 11.3, and 10.0 minutes from the start of the tournament to the last round), or about 21 seconds per round including feedback and the transition to the next round. Of this, active play averaged 15.4 seconds per round ($SD = 5.3$): 8.9 seconds for the Sender's turn and 6.5 seconds for the Receiver's. The three tournaments yielded 240 rounds in total, 80 in each phase.
+
+\subsection{Analysis}
+
+\subsubsection{Preprocessing}
+
+The key presses in each Sender turn were summarized as a series of readable steps (for example, \enquote{went to top; wiggled top$\leftrightarrow$center $\times 5$; long pause on top; time ran out}). The summaries preserved the final tile in 100\% of turns and the hand-coded strategy in 93\%. Because the summaries omitted intermediate tiles and pauses shorter than one second, the exact arrow-key sequence could be recovered in only 59\% of turns. No rounds were excluded.
+
+Figure~\ref{fig:tools} summarizes the three measurement tools described next.
+
+\begin{figure}[t]
+\caption{The Three Measurement Tools}
+\label{fig:tools}
+\includegraphics[width=\linewidth]{figT_tools}
+\figurenote{(A) A simulated Receiver with no history with the Sender reads each real signal; its accuracy measures legibility. (B) Receivers with early or late histories read early or late signals from players they never partnered; differences down the columns estimate the Sender's contribution and differences across the rows the Receiver's. Cell values are the observed decoding rates. (C) Odd-one-out judgments over triplets of turns are turned into a map in which similar turns lie close together.}
+\end{figure}
+
+\subsubsection{Measuring Legibility: A Neutral Reader}
+
+To measure how readable a signal was without relying on familiarity with a particular partner, we used a large language model (GPT-6.1 Terra) as a simulated Receiver. We gave the model the rules and five complete games from \emph{other} tournaments, then asked it where to place the triangle after reading each Sender turn. Because the model had no history with any player, we used its accuracy as a measure of how legible each signal was to an outsider. The model read all 240 real Sender turns. For each turn $t$, we recorded a binary legibility score $\ell_t \in \{0, 1\}$ alongside the real outcome $y_t \in \{0, 1\}$.
+
+\subsubsection{Separating Signalling From Reading: A Counterfactual Design}
+
+To distinguish the contributions of Senders and Receivers, we used a $2 \times 2$ counterfactual design. Within each tournament, we truncated each player's history at the end of phase 1 (\emph{early Receiver}) or at the start of phase 3 (\emph{late Receiver}). Each version of the Receiver then decoded eight phase-1 signals and eight phase-3 signals sent by \emph{other} players. None of these signals had been received by that player, and there were 512 decodes in all. Let $m_{sr}$ denote the decoding rate for signals from phase $s$ and Receiver history $r$ ($E$ = early, $L$ = late). The three quantities of interest are
+\begin{align}
+\text{Sender effect} &= \tfrac{1}{2}\left[(m_{LE} + m_{LL}) - (m_{EE} + m_{EL})\right], \\
+\text{Receiver effect} &= \tfrac{1}{2}\left[(m_{EL} + m_{LL}) - (m_{EE} + m_{LE})\right], \\
+\text{Interaction} &= (m_{LL} - m_{LE}) - (m_{EL} - m_{EE}).
+\end{align}
+The Sender effect compares early and late signals at each Receiver history and averages the differences. The Receiver effect compares early and late histories at each signal phase and averages the differences. The interaction tests whether the benefit of a later Receiver history is greater for late signals than for early signals, as a shared convention would predict. We obtained confidence intervals by resampling Receivers (3,000 bootstrap samples).
+
+\subsubsection{Measuring Style: An Embedding Built From Similarity Judgments}
+
+We mapped signalling style from similarity judgments rather than hand-coded strategy labels, following the odd-one-out approach used to map human object concepts \parencite{hebart2020}. For each triplet, a language-model judge saw three Sender turns, each with its own goal, and selected the turn whose signalling strategy differed most from the other two. We collected 2,649 such triplets across all 240 turns, along with 1,560 two-choice probes (4,209 judgments). We then fitted a three-dimensional embedding by maximum likelihood, placing turns judged similar close together. Each turn $i$ was assigned a position $\mathbf{x}_i \in \mathbb{R}^3$. Selecting $k$ as the odd one out of $\{i, j, k\}$ identifies $i$ and $j$ as the most similar pair. The model assigns this choice the probability
+\begin{equation}
+P(k \text{ odd} \mid \mathbf{x}) = \frac{\exp(-\lVert \mathbf{x}_i - \mathbf{x}_j \rVert^2)}{\exp(-\lVert \mathbf{x}_i - \mathbf{x}_j \rVert^2) + \exp(-\lVert \mathbf{x}_i - \mathbf{x}_k \rVert^2) + \exp(-\lVert \mathbf{x}_j - \mathbf{x}_k \rVert^2)}.
+\end{equation}
+The fitted positions maximize the sum of the log probabilities across all judgments. The embedding with three dimensions best predicted held-out judgments. For analyses of change, we subtracted the mean position of turns with the same goal from each turn's position,
+\begin{equation}
+\mathbf{r}_t = \mathbf{x}_t - \frac{1}{|G_t|}\sum_{u \in G_t} \mathbf{x}_u,
+\end{equation}
+where $G_t$ is the set of turns with the same goal as turn $t$ (each goal occurred eight times). Distances were then computed relative to these goal means to reflect differences in style rather than goal.
+
+The embedding showed acceptable internal validity. The judge gave the same answer on 84\% of reshuffled triplets, which served as a ceiling. The embedding predicted 70\% of held-out triplets (chance 33\%) and 81\% of held-out pairwise probes (chance 50\%). Placing a new turn in the embedding using ten judgments allowed it to predict 72\% of the other judgments for that turn. The three axes were interpretable: signalling a direction versus simply going to the goal, stepping toward versus away from the goal direction, and marking the center versus wiggling at the goal. Because the original prompt listed example strategies, we removed the examples and repeated the procedure.
+
+\subsubsection{Inferential Tests}
+
+We tested for changes in success and legibility across phases using logistic regression with phase as the predictor, $\operatorname{logit} P(y_t = 1) = \beta_0 + \beta_1\,\text{phase}_t$, and $\chi^2$ tests. We used McNemar's test to compare the neutral reader and the real Receiver on the same signals, and Fisher's exact test to compare proportions across groups. To assess the association between partners' styles, we regressed each player's next turn on their own previous turn and their current partner's latest turn:
+\begin{equation}
+\mathbf{r}_{p,\,t+1} = a_1\,\mathbf{r}_{p,\,t} + a_2\,\mathbf{r}_{q(p),\,t} + \boldsymbol{\varepsilon},
+\end{equation}
+where $q(p)$ is $p$'s current partner. We pooled the three dimensions and clustered standard errors by player ($n = 224$ turns with a preceding turn). An extended model added a third term for the mean of $p$'s own past successful turns ($a_3$). A placebo model replaced the partner with a randomly selected non-partner from the same tournament. Because each Sender contributed several turns, we checked the main legibility and success effects using logistic generalized estimating equations with an exchangeable correlation structure and clustering by Sender. To estimate the gap between reader and partner, we modeled two outcomes per turn, one for the neutral reader ($N = 1$) and one for the real partner ($N = 0$):
+\begin{equation}
+\operatorname{logit} P(\text{correct}) = \beta_0 + \beta_1 N + \sum_{k=2}^{3}\left(\gamma_k\,[\text{phase} = k] + \delta_k\,N\,[\text{phase} = k]\right),
+\end{equation}
+where $\delta_2$ tests whether the gap after the first switch is larger than in phase 1. To test for group-specific signal forms, we used a rule to classify each Sender turn based on its moves (for example, a wiggle toward the goal, a sideways wiggle, or a move directly to the goal). We compared the probability that two turns in the same tournament and phase had the same form with the probability obtained by shuffling tournament labels within phase (1,000 permutations).
+
+\subsubsection{A Generative Model}
+
+To test whether the partner pull could account for the group-level pattern, we fitted a generative model. In the model, each player's next turn was a weighted combination of their own last turn, their partner's last turn, and their own past successful turns. Success depended on how legible the signal was and how closely it matched what the Receiver had come to expect. We then ran the model 300 times using each tournament's actual partner schedule. For a separate comparison, we tested whether large language models could predict a player's next move given that player's history. We also had the language models play whole tournaments in closed loop.
+
+% ======================================================================
+\section{Results}
+
+\subsection{Success Fell, Then Rose}
+
+Across all players, the real success rate was 29\% in phase 1 (23 of 80 rounds), 24\% in phase 2 (19 of 80), and 49\% in phase 3 (39 of 80), $\chi^2(2) = 12.52$, $p = .002$. Overall, the odds of success increased across phases, with an odds ratio (OR) $= 1.58$ per phase, $p = .008$. The decline from phase 1 to phase 2 was not statistically significant (Fisher's exact $p = .59$), but the increase from phase 2 to phase 3 was ($p = .002$).
+
+\subsection{Signals Became Clearer, but New Partners Misread Them (H1a, H1b)}
+
+The neutral reader correctly decoded Senders' signals 36\%, 46\%, and 61\% of the time in phases 1--3 (29, 37, and 49 of 80). Accuracy rose steadily, with an OR $= 1.67$ per phase, $p = .002$ (Figure~\ref{fig:gap}). This pattern supports H1a: signals became easier to read even as partners changed.
+
+\begin{figure}[t]
+\caption{Legibility Rose Steadily While Real Success Dipped After the First Switch}
+\label{fig:gap}
+\centering\includegraphics[width=0.78\linewidth]{figG_gap}
+\figurenote{The same signals, read by a neutral reader with no history (blue) and by the players' real partners (orange). Bands are 95\% Wilson confidence intervals; $n = 80$ Sender turns per phase.}
+\end{figure}
+
+In phase 2, the gap between the two was large. On the same 80 signals, the neutral reader succeeded on 37 and the new partner on 19; in 27 rounds the neutral reader was right and the partner wrong, and in only 9 the reverse, McNemar $p = .004$. In phase 1 there was no reliable gap (29 versus 23; discordant 17 versus 11, $p = .34$), and in phase 3 it was smaller (49 versus 39; 16 versus 6, $p = .052$). These effects held when repeated turns by the same Sender were taken into account: legibility still rose across phases (OR $= 1.67$, $p = .004$), success still rose (OR $= 1.58$, $p = .015$), and the phase-2 gap remained (OR $= 2.76$, $p = .005$). Crucially, the gap was larger in phase 2 than in phase 1 ($\delta_2$: OR $= 1.96$, $p = .044$), whereas the phase-3 gap did not differ from phase 1 ($p = .67$), so the neutral reader was not simply better than people across the board. The gap appeared in tournaments 1 and 2 (43\% vs.\ 23\% and 60\% vs.\ 23\%) and was small in tournament 3 (30\% vs.\ 25\%). This supports H1b: immediately after a switch, Senders were producing clearer signals than before, but their new partners read them differently.
+
+\subsection{The Gain Came From Senders, Not Receivers (H1c)}
+
+In the counterfactual design (Figure~\ref{fig:cf}), the same Receivers decoded later signals more accurately than earlier ones by 14 percentage points, 95\% CI [5, 22]. Giving a Receiver more history yielded a smaller, less certain gain of 5 points [$-4$, 14]. There was no clear advantage for late Receivers in decoding late signals, with an interaction of $-1$ point [$-12$, 11]. Cell means were 38\% (early signals, early Receivers), 43\% (early signals, late Receivers), 52\% (late signals, early Receivers), and 56\% (late signals, late Receivers). This pattern supports H1c: the improvement was concentrated in the signals Senders produced. If Receivers learned, there was no clear evidence that this learning transferred to signals from players they had not met.
+
+\begin{figure}[t]
+\caption{Counterfactual Decoding Separates Signalling From Reading}
+\label{fig:cf}
+\includegraphics[width=\linewidth]{fig3_counterfactual}
+\figurenote{Left: success for each combination of signal phase and Receiver history. Right: main effects and interaction with 95\% confidence intervals (Receivers resampled).}
+\end{figure}
+
+\subsection{Reunions: An Important Confound}
+
+In phase 3, reunited pairs succeeded more often than new pairs, 57\% versus 40\% (23 versus 16 of 40), though the difference was not statistically significant (Fisher's exact $p = .18$; Figure~\ref{fig:reunion}). The reunited Senders' signals were also more legible to the neutral reader, 75\% versus 48\% ($p = .021$). Reunions were concentrated in tournament 1, so the reunion advantage may reflect better Senders in that tournament rather than the resumption of an earlier pact. New partners in phase 3 still did better than partners in phase 1 (40\% versus 29\%), so the phase-3 rise was not limited to reunited pairs.
+
+\begin{figure}[t]
+\caption{Phase-3 Success and Legibility for New and Reunited Partners}
+\label{fig:reunion}
+\centering\includegraphics[width=0.6\linewidth]{figR_reunion}
+\figurenote{Error bars are 95\% Wilson confidence intervals; $n = 40$ rounds per group.}
+\end{figure}
+
+\subsection{What Signals Looked Like}
+
+The style embedding supported one robust distinction: turns that try to signal a direction and \enquote{still} turns that simply go to the goal. Two clusters described the data better than one, and adding more clusters did not improve the fit. A four-way description based on a reading of the raw turns remained informative (Figure~\ref{fig:emb}): \emph{pointers} step back and forth between the goal and the neighbor in the goal direction (42\% success); \emph{right axis, unclear end} turns move along the correct line but leave it unclear which end is the head (36\%); \emph{still or minimal} turns pause and mark the goal (42\%); and \emph{busy or circling} turns loop through several neighbors and usually time out (16\%).
+
+\begin{figure}[t]
+\caption{A Map of Signalling Style Built From Similarity Judgments}
+\label{fig:emb}
+\includegraphics[width=\linewidth]{fig4_embedding}
+\figurenote{Left: all 240 Sender turns in the embedding, colored by a four-way k-means split and labeled with verbal descriptions. Right: success for each group.}
+\end{figure}
+
+\subsection{Did Groups Develop Shared Signals? (H1e)}
+
+If each tournament were building its own small language, turns within a tournament should come to share forms more often than turns from different tournaments. They did not. The probability that two turns in the same tournament and phase used the same form was no higher than when tournament labels were shuffled (0.20 vs.\ 0.20, permutation $p = .31$). Instead, the tournaments moved in the same direction (Figure~\ref{fig:lex}). The share of turns that signalled a direction at all rose from 69\% in phase 1 to 88\% in phase 2, and the \emph{pointer} form, a wiggle from the goal toward the way the goal points, rose from 15\% to 36\% of turns (Fisher's exact $p = .003$), led by tournaments 1 and 2. This was the most legible form in the game: the neutral reader decoded pointer turns correctly 71\% of the time against 39\% for all other forms ($p < .001$), and real partners succeeded with them 57\% of the time. The shift did not settle into a fixed convention; in phase 3 the pointer share fell back to 21\% as some players returned to simply marking the goal. Because tournaments never met, this convergence cannot reflect copying between groups; it is better described as many pairs independently arriving at the form that is easiest for anyone to read. H1e was thus supported for the direction of change, though not for a stable group convention.
+
+\begin{figure}[t]
+\caption{Signal Forms by Tournament and Phase}
+\label{fig:lex}
+\includegraphics[width=\linewidth]{figL_lexicon}
+\figurenote{Rule-based form label of every Sender turn. The pointer wiggle (dark blue) was the most legible form for the neutral reader (71\% correct vs.\ 39\% for other forms).}
+\end{figure}
+
+\subsection{Each Player Was Pulled Toward Their Current Partner (H1d)}
+
+In the style space, partners' turns were closer to one another than to non-partners' turns in every phase (mean distance in phases 1--3: partners 2.21, 1.66, 1.73; non-partners in the same tournament 2.52, 1.77, 2.12). Regressing each player's next turn on their own previous turn and their current partner's latest turn yielded weights of 0.25 ($p < .001$) and 0.13 ($p = .002$), respectively. Replacing the partner with a random non-partner yielded a weight of $-0.08$ ($p = .004$; Figure~\ref{fig:model}). The partner association was present in phase 1 (0.16, $p = .014$) and phase 3 (0.17, $p = .041$), but not in phase 2 (0.01). It also replicated with the judge who saw no example strategies (0.14, $p = .009$). Adding the player's own past successful turns to the model yielded weights of 0.21 (own), 0.12 (partner), and 0.17 (own successes). The models explained a modest share of the variance in a player's next turn: own and partner turns together explained 9.4\%, and the full model explained 10.6\% (9.3\% when predicting held-out tournaments).
+
+\begin{figure}[t]
+\caption{The Style-Update Model}
+\label{fig:model}
+\includegraphics[width=\linewidth]{figM_model}
+\figurenote{Fitted weights on a player's next turn in the style map (goal removed; 224 turns). Arrow width is proportional to weight.}
+\end{figure}
+
+We found no evidence of a group-wide style. All distances decreased in phase 2, including those between players in different tournaments who never met. This pattern points to a shared shift at that stage rather than to social copying (Figure~\ref{fig:conv}). A judge could not identify which tournament a turn came from (50\%, chance 50\%). Styles did not settle into a fixed pattern either: after controlling for phase, the size of a player's change from one turn to the next did not decrease as partners played more games together (slope $+0.001$ per game, $p = .96$) and was only slightly smaller after a success (1.60 versus 1.76). The results therefore supported the pairwise form of H1d: styles shifted toward those of current partners, not toward a group-wide style.
+
+\begin{figure}[t]
+\caption{Convergence in Signalling Style}
+\label{fig:conv}
+\includegraphics[width=\linewidth]{fig5_convergence}
+\figurenote{Left: style distance between two players' turns in the same phase. Right: weights on a player's next turn, with 95\% confidence intervals clustered by player.}
+\end{figure}
+
+\subsection{Simulating the Model}
+
+The fitted model reproduced the partner alignment but not the success curve (Figure~\ref{fig:sim}). Simulated on the real schedules, partners ended up closer in style than non-partners, and removing the partner pull erased this gap. Simulated success, however, was 31\%, 38\%, and 34\% in phases 1--3 against the real 29\%, 24\%, and 49\%. The reason appears to lie in the style map rather than the model: legibility estimated through the three embedding dimensions was flat (about 47\% in every phase), whereas the neutral reader showed 36\%, 46\%, and 61\%. The three-number style map does not capture what makes a signal readable.
+
+\begin{figure}[t]
+\caption{The Fitted Model Simulated on the Real Partner Schedules}
+\label{fig:sim}
+\includegraphics[width=\linewidth]{figS_sim}
+\figurenote{Real players (black) against 300 simulations of the full model (blue) and of the model without partner pull (yellow). Bands contain 95\% of simulations.}
+\end{figure}
+
+\subsection{Language Models as Models of Players}
+
+Given each player's actual history and games from the other tournaments, GPT-6.1 Terra predicted the Sender's strategy 57\% of the time and the Receiver's interpretation 63\% of the time, outperforming a history-free baseline (43\% and 49\%; Figure~\ref{fig:llm}). Claude Sonnet 5.5 (50\%, 57\%) and Claude Haiku 5.5 (41\%, 43\%) were less accurate than Terra. A judge rated Terra's predicted turn as a better match for the actual turn than the player's previous turn 70\% of the time, compared with 53\% for a turn by another player with the same goal. With the goal held fixed, however, the judge rated Terra's prediction as closer to the player's current turn than the player's actual next turn was (58\%, $p = .013$). Thus, the model predicted less change than players made. When language models played entire tournaments, simulated pairs succeeded 48\%, 68\%, and 60\% of the time in phases 1--3, with no cost for switching partners. Simulated players coordinated much more easily than human players did.
+
+\begin{figure}[t]
+\caption{Language Models as Models of Players}
+\label{fig:llm}
+\includegraphics[width=\linewidth]{fig6_llm}
+\figurenote{Left: accuracy of next-move predictions from real history (leave-one-tournament-out). Right: judge comparisons on 224 Sender turns.}
+\end{figure}
+
+% ======================================================================
+\section{Discussion}
+
+When members of a group change partners, what part of their shared understanding can they take with them? A code would carry over in full to any new partner; a pact would have to be made afresh with each one. Neither account alone fits the data. Over time, signals became easier for a reader who had never met the Sender to interpret, as the code account predicts. Yet actual partners misread these clearer signals immediately after a switch, as the pact account predicts. The counterfactual decomposition attributed the improvement to Senders rather than Receivers. We therefore reject the null hypotheses for H1a, H1b, and H1c, for the pairwise form of H1d, and for H1e with respect to the direction of change. The evidence favors an asymmetric account: what Senders learn about making themselves understood carries over to new partners, while what Receivers learn about interpreting signals remains tied to a particular partner.
+
+\subsection{How Shared Signals Develop in a Group}
+
+These results suggest one way in which conceptual pacts \parencite{brennan1996,garrod1987} might become community conventions \parencite{garrod1994,fay2010}. A pact is an agreement worked out by a pair, but the two partners need not carry away the same thing. The Sender develops a more explicit signal, which someone outside the pair can more readily understand. The Receiver, by contrast, learns how to interpret this particular Sender. When partners change, a signal that makes sense without that shared history is more likely to persist. This distinction echoes the finding that signs refined in a community are easier for outsiders to interpret than signs refined in an isolated pair \parencite{fay2008}. It also helps explain the dip after a switch: if Receivers interpret a signal partly in light of what they have learned about their partner, then a new partner makes some of that experience less useful, as the conceptual alignment framework would suggest \parencite{stolk2016}. On this account, partners build a shared context together \parencite{stolk2020}, but what the group comes to share are the forms that depend least on that context. The group-level results fit this account. No tournament developed a dialect of its own. Instead, pairs in every tournament moved toward the same pointer form, the one an outsider could interpret most easily. A similar process is thought to occur in emerging languages, where forms that newcomers can readily understand are favored as they pass among speakers \parencite{fay2008}. A community, then, need not settle on a vocabulary together. What comes to be shared may simply be what still makes sense to the next partner.
+
+The same account makes a prediction about newcomers: a person who joins a group should be understood before they learn to understand its members. If the newcomer's signals are clear, others can read them, while the newcomer still needs time to learn how each partner signals. The tendency to shift toward the current partner's style, observed in phases 1 and 3, shows one way two people can come to signal alike. In our short sessions, however, this adjustment between partners did not yield a convention shared by the group.
+
+\subsection{Limitations}
+
+Several limitations narrow what these results can tell us. The phase-3 reunions confound partner familiarity with tournament: most reunions took place in tournament 1, where Senders were also more legible. It is therefore hard to tell whether a signal was easier to read because partners had returned to a shared convention or because the Sender was easier to read in the first place. The \enquote{neutral} reader was an outsider, but not an uninformed one. To learn the game, it saw five complete games from other tournaments, including their later phases. Since the tournaments converged on similar forms, some of the gain in legibility may reflect a growing resemblance to signals the reader had already seen. A language model may also simply favor transparent forms such as the pointer. The language model used to simulate counterfactual Receivers adapted less than people did and did not capture the variability in their responses. The Receiver contribution may therefore be underestimated. The claim that \enquote{reading stays local} rests chiefly on the lack of a reliable Receiver effect. In a small sample, failure to detect an effect offers little reason to conclude that it is absent. The style map likewise relies on a language model's judgments. Repeating the procedure without example strategies reduces, but does not remove, the possibility that the map reflects the judge's assumptions. The three-dimensional map also leaves out detail that direct judgments preserve. Finally, several tests were run without correction for multiple comparisons, the key gap-by-phase interaction was only just significant ($p = .044$), and the group-level analysis (H1e) was exploratory. Taken together, these results are better read as a first test than as a settled finding.
+
+The reach of these findings is uncertain. The sample was small (16 players, 240 rounds) and drawn by convenience from a university library. Several effects, including the dip itself, were not statistically clear. The task was a wordless, nine-second laboratory game. Conversation, by contrast, involves words, shared histories, and rich context. How far the findings carry over to conversation remains an open question.
+
+\subsection{Future Directions}
+
+Three steps follow. First, more tournaments with a balanced schedule, in which no pair plays together again and every player meets several new partners, would remove the main confound and test whether a convention eventually takes hold across the group. Second, asking people to serve as counterfactual Receivers by interpreting signals from players they have never met would replace simulated decoding with human judgment. Third, measuring legibility directly from decoding outcomes, rather than inferring it from the three-dimensional style map, should help the generative model reproduce not just the alignment between partners but also the success curve.
+
+\subsection{Conclusion}
+
+When strangers develop a shared language without words, they learn two things that carry over differently. Senders learn to express a meaning in a way that new partners can understand. Receivers, by contrast, learn to understand one particular partner, and that understanding does not readily transfer. Yet across the group, pairs converge on signals that others can read. A shared set of signals may thus take shape through many local agreements: what begins as an understanding between two people can become a group convention when the signal is clear enough to travel.
+
+\printbibliography
+
+\appendix
+\section{Supplemental Materials: Analysis Code}
+
+The code for the online game, all analysis scripts, and the source of this report are publicly available at \url{https://github.com/dylan518/tcg-ladder}. To protect participants' privacy, the game logs are not included in the repository; they are available from the author on request. The main scripts are:
+\begin{itemize}
+\item \texttt{engine.js}, \texttt{tournament.js}, \texttt{public/}: the online game, tournament pairing, and logging.
+\item \texttt{analysis/tokenize\_games.py}, \texttt{analysis/models/readable.py}: preprocessing of key presses into readable steps.
+\item \texttt{analysis/models/cf\_encode\_decode.py}: neutral-reader legibility and the $2 \times 2$ counterfactual decoding.
+\item \texttt{analysis/models/strategy\_embed.py}, \texttt{analysis/models/eval\_embeddings.py}: triplet judgments and the style embedding.
+\item \texttt{analysis/models/convergence.py}: distance analyses and the style-update regressions.
+\item \texttt{analysis/label\_strategies.py}: hand-coded signal forms (group-level form analysis).
+\item \texttt{analysis/models/group\_model.py}: the generative model and its simulations.
+\item \texttt{analysis/models/fullgame\_sonnet.py}, \texttt{analysis/models/llm\_validity.py}: language models as models of players.
+\item \texttt{paper/make\_figures.py}, \texttt{paper/make\_figures\_v2.py}: all figures.
+\end{itemize}
+
+\end{document}

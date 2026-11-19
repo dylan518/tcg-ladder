@@ -1,0 +1,8 @@
+data
+node_modules
+analysis
+test
+server.log
+*.bak
+.admin_key
+.env*

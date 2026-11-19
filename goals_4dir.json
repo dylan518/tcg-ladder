@@ -1,0 +1,257 @@
+{
+  "seed": 63063,
+  "goals": [
+    {
+      "round": 1,
+      "x": 1,
+      "y": 0,
+      "tile": "right",
+      "direction": "down"
+    },
+    {
+      "round": 2,
+      "x": 1,
+      "y": 0,
+      "tile": "right",
+      "direction": "right"
+    },
+    {
+      "round": 3,
+      "x": -1,
+      "y": -1,
+      "tile": "bottom-left",
+      "direction": "up"
+    },
+    {
+      "round": 4,
+      "x": 0,
+      "y": 1,
+      "tile": "top",
+      "direction": "right"
+    },
+    {
+      "round": 5,
+      "x": 1,
+      "y": 1,
+      "tile": "top-right",
+      "direction": "up"
+    },
+    {
+      "round": 6,
+      "x": 0,
+      "y": 1,
+      "tile": "top",
+      "direction": "up"
+    },
+    {
+      "round": 7,
+      "x": -1,
+      "y": 0,
+      "tile": "left",
+      "direction": "left"
+    },
+    {
+      "round": 8,
+      "x": 1,
+      "y": -1,
+      "tile": "bottom-right",
+      "direction": "left"
+    },
+    {
+      "round": 9,
+      "x": -1,
+      "y": 1,
+      "tile": "top-left",
+      "direction": "left"
+    },
+    {
+      "round": 10,
+      "x": 1,
+      "y": 1,
+      "tile": "top-right",
+      "direction": "down"
+    },
+    {
+      "round": 11,
+      "x": -1,
+      "y": -1,
+      "tile": "bottom-left",
+      "direction": "right"
+    },
+    {
+      "round": 12,
+      "x": 1,
+      "y": 1,
+      "tile": "top-right",
+      "direction": "left"
+    },
+    {
+      "round": 13,
+      "x": -1,
+      "y": -1,
+      "tile": "bottom-left",
+      "direction": "down"
+    },
+    {
+      "round": 14,
+      "x": -1,
+      "y": 0,
+      "tile": "left",
+      "direction": "up"
+    },
+    {
+      "round": 15,
+      "x": 0,
+      "y": -1,
+      "tile": "bottom",
+      "direction": "down"
+    },
+    {
+      "round": 16,
+      "x": 1,
+      "y": 0,
+      "tile": "right",
+      "direction": "down"
+    },
+    {
+      "round": 17,
+      "x": -1,
+      "y": 1,
+      "tile": "top-left",
+      "direction": "up"
+    },
+    {
+      "round": 18,
+      "x": 1,
+      "y": 0,
+      "tile": "right",
+      "direction": "up"
+    },
+    {
+      "round": 19,
+      "x": -1,
+      "y": -1,
+      "tile": "bottom-left",
+      "direction": "left"
+    },
+    {
+      "round": 20,
+      "x": -1,
+      "y": 0,
+      "tile": "left",
+      "direction": "left"
+    },
+    {
+      "round": 21,
+      "x": 1,
+      "y": -1,
+      "tile": "bottom-right",
+      "direction": "down"
+    },
+    {
+      "round": 22,
+      "x": -1,
+      "y": 1,
+      "tile": "top-left",
+      "direction": "up"
+    },
+    {
+      "round": 23,
+      "x": 1,
+      "y": -1,
+      "tile": "bottom-right",
+      "direction": "down"
+    },
+    {
+      "round": 24,
+      "x": 1,
+      "y": 1,
+      "tile": "top-right",
+      "direction": "left"
+    },
+    {
+      "round": 25,
+      "x": 0,
+      "y": -1,
+      "tile": "bottom",
+      "direction": "left"
+    },
+    {
+      "round": 26,
+      "x": 0,
+      "y": -1,
+      "tile": "bottom",
+      "direction": "right"
+    },
+    {
+      "round": 27,
+      "x": -1,
+      "y": 0,
+      "tile": "left",
+      "direction": "down"
+    },
+    {
+      "round": 28,
+      "x": 1,
+      "y": -1,
+      "tile": "bottom-right",
+      "direction": "right"
+    },
+    {
+      "round": 29,
+      "x": -1,
+      "y": -1,
+      "tile": "bottom-left",
+      "direction": "right"
+    },
+    {
+      "round": 30,
+      "x": -1,
+      "y": 1,
+      "tile": "top-left",
+      "direction": "down"
+    },
+    {
+      "round": 31,
+      "x": 0,
+      "y": 1,
+      "tile": "top",
+      "direction": "left"
+    },
+    {
+      "round": 32,
+      "x": 0,
+      "y": 1,
+      "tile": "top",
+      "direction": "right"
+    },
+    {
+      "round": 33,
+      "x": 1,
+      "y": 1,
+      "tile": "top-right",
+      "direction": "right"
+    },
+    {
+      "round": 34,
+      "x": 0,
+      "y": -1,
+      "tile": "bottom",
+      "direction": "up"
+    },
+    {
+      "round": 35,
+      "x": 0,
+      "y": 1,
+      "tile": "top",
+      "direction": "right"
+    },
+    {
+      "round": 36,
+      "x": 0,
+      "y": -1,
+      "tile": "bottom",
+      "direction": "up"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "tcg-ladder",
+  "version": "1.0.0",
+  "description": "Tacit Communication Game with partner ladders and tournaments",
+  "scripts": {
+    "start": "node dev-server.js",
+    "test": "node test/bots_tournament.js oneonone"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "ws": "^8.22.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

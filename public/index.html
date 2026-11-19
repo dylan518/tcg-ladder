@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crack the Vault</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Crack the Vault</h1>
+
+  <section id="join" class="card">
+    <div id="slots" class="hidden">
+      <p>Tap your name to join.</p>
+      <div id="slotList" class="slots"></div>
+      <p class="muted" id="slotOther">Not on the list? Ask your experimenter.</p>
+    </div>
+    <form id="nameForm" class="hidden">
+      <p>Enter your name to join the game.</p>
+      <input id="pname" placeholder="Your name" autocomplete="off" data-1p-ignore maxlength="40" required>
+      <button>Join</button>
+    </form>
+    <p id="joinPrompt">Loading…</p>
+    <form id="joinForm" class="hidden">
+      <input id="pid" placeholder="Your name" autocomplete="off" required>
+      <button>Join</button>
+    </form>
+    <p id="joinErr" class="err"></p>
+    <button id="rejoinBtn" class="hidden">Join again</button>
+    <div id="joinHowto" class="hidden"></div>
+  </section>
+
+  <section id="lobby" class="card hidden">
+    <p class="who">You are <b id="meId"></b></p>
+    <h2 id="lobbyTitle"></h2>
+    <p id="lobbyDetail"></p>
+    <button id="lobbyReady" class="hidden">Ready</button>
+    <div id="results" class="hidden"></div>
+    <form id="adhocForm" class="hidden">
+      <input id="partnerId" placeholder="Partner's ID" autocomplete="off" required>
+      <button>Pair with this partner</button>
+    </form>
+    <button id="cancelAdhoc" class="hidden secondary">Cancel</button>
+    <details class="howto" open>
+      <summary>How to play</summary>
+      <div class="howto-figs"></div>
+      <ul class="rules-ladder">
+        <li>You and a partner each control a key on a 3×3 board. In each trial one of you is the <b>Sender</b> and the other is the <b>Receiver</b>. Roles switch every trial.</li>
+        <li>Only the Sender sees the vault code: where both keys must end up and which way they must face.</li>
+        <li>The Sender goes first and can only communicate by moving their own key. Then the Receiver places their key.</li>
+        <li>The vault opens only if <b>both</b> keys end up in the right place, facing the right way.</li>
+        <li>Each turn has a time limit, shown by the bar above the board.</li>
+        <li>Controls: <kbd>Space</kbd> makes your key appear, arrow keys move it, <kbd>A</kbd>/<kbd>D</kbd> rotate it (circles can't rotate), and <kbd>Space</kbd> again ends your turn.</li>
+        <li>Don't talk to, gesture to or message your partner. The board is the only way to communicate.</li>
+      </ul>
+      <ul class="rules-tour">
+        <li>Each round you play with a partner on a 3×3 board. One of you is the <b>Sender</b> and the other is the <b>Receiver</b>. Some rounds you will sit out and wait.</li>
+        <li>Only the Sender sees the goal: a tile on the board and the direction the Receiver's triangle must point. The triangle can point 8 ways (up, down, left, right and the 4 diagonals); the small dot marks its tip.</li>
+        <li>The Sender goes first and can only communicate by moving their own key, a circle. Then the Receiver places their triangle and turns it.</li>
+        <li>The round is a success if the Receiver's triangle ends on the goal tile, pointing in the goal direction.</li>
+        <li>Each turn has a time limit, shown by the bar above the board.</li>
+        <li>Your key starts in the middle of the board when your turn begins. Arrow keys move it, <kbd>A</kbd>/<kbd>D</kbd> rotate the triangle, and <kbd>Space</kbd> ends your turn.</li>
+        <li>Don't talk to, gesture to or message anyone. The board is the only way to communicate.</li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="game" class="hidden">
+    <div class="topcard">
+      <span id="gRound"></span>
+      <span class="hide-tour">Partner <b id="gPartner"></b></span>
+      <span class="hide-tour">Trial <b id="gTrial"></b></span>
+      <span class="hide-tour">Vaults cracked <b id="gWins"></b></span>
+    </div>
+    <div class="timer"><div id="timerFill"></div></div>
+    <canvas id="board" width="520" height="590"></canvas>
+    <p id="status"></p>
+    <div class="readywrap"><button id="readyBtn" class="hidden">Start</button></div>
+    <div class="controls">
+      <button data-a="rotateleft" title="A">⟲</button>
+      <button data-a="up" title="↑">↑</button>
+      <button data-a="rotateright" title="D">⟳</button>
+      <button data-a="left" title="←">←</button>
+      <button data-a="down" title="↓">↓</button>
+      <button data-a="right" title="→">→</button>
+      <button data-a="stop" class="done" title="Space">Space</button>
+    </div>
+    <div id="gameHowto"></div>
+  </section>
+</main>
+<script src="net.js"></script>
+<script src="howto-figs.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

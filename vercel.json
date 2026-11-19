@@ -1,0 +1,24 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "public",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "{goals.json,tournament.js,engine.js,results.js,store.js,lib/**}"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/schedule",
+      "destination": "/schedule.html"
+    },
+    {
+      "source": "/api/:path((?!index$).*)",
+      "destination": "/api/index?path=:path"
+    }
+  ],
+  "framework": null
+}

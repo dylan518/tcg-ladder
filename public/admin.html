@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCG ladder — experimenter</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  main { max-width: 1000px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  label { display: block; font-size: .9rem; color: #5a6273; margin-top: 10px; }
+  label input, label select, label textarea { display: block; width: 100%; margin-top: 3px; color: #1d2330; }
+  label.inline { display: flex; gap: 6px; align-items: center; }
+  label.inline input { width: auto; display: inline; margin: 0; }
+  textarea { min-height: 110px; font-family: ui-monospace, monospace; font-size: .85rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+  th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid #eceef1; }
+  .round { margin: 10px 0; }
+  .pill { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: .8rem; background: #eceef1; }
+  .pill.playing { background: #fbe7d6; } .pill.done { background: #d7f0dc; } .pill.on { background: #d7f0dc; }
+  .actions { display: flex; gap: 8px; margin-top: 14px; }
+  .card + .card { margin-top: 16px; }
+  a { color: #3171a6; }
+  #preview { font-family: ui-monospace, monospace; font-size: .85rem; white-space: pre-wrap; }
+  .checks { margin: 10px 0; padding: 0; list-style: none; font-size: .9rem; }
+  .checks li { padding: 3px 0; }
+  .checks .pass::before { content: 'PASS  '; color: #2e7d32; font-weight: 700; }
+  .checks .fail::before { content: 'FAIL  '; color: #b3261e; font-weight: 700; }
+  .checks .fail { color: #b3261e; }
+  .banner-fail { background: #f6d8d6; color: #7a1a14; padding: 10px 12px; border-radius: 6px; font-weight: 600; white-space: pre-wrap; }
+  .banner-ok { background: #d7f0dc; color: #1e5a26; padding: 8px 12px; border-radius: 6px; font-weight: 600; }
+  tr.now td { background: #fff4d6; }
+  tr.msg td { color: #5a6273; font-style: italic; }
+  .sched { max-height: 520px; overflow: auto; }
+  button.small { padding: 3px 9px; font-size: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; min-height: 34px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; background: #e3eefb; color: #1d3f66; border-radius: 16px; padding: 5px 6px 5px 12px; font-weight: 600; animation: pop .3s ease-out; }
+  .chip .x { border: 0; background: transparent; color: #5a6c85; font-size: 16px; line-height: 1; padding: 0 5px; cursor: pointer; border-radius: 10px; }
+  .chip .x:hover { background: #c9d9ee; color: #b3261e; }
+  @keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>TCG ladder — experimenter dashboard</h1>
+
+  <section class="card" id="lobbyCard">
+    <h2>Lobby</h2>
+    <p id="lobbyInfo" class="muted"></p>
+    <div id="lobbyNames" class="chips"></div>
+    <div class="actions">
+      <button id="lobbyStart">Start game</button>
+      <button id="lobbyOpen" class="secondary">Open new lobby</button>
+    </div>
+    <p class="muted" style="font-size:.85rem">Start game builds the random tournament for exactly the people listed (odd number: one sits out each phase),
+      using the seed, turn and first-turn seconds from the tournament settings below.</p>
+    <p id="lobbyErr" class="err"></p>
+  </section>
+
+  <section class="card">
+    <h2>Tournament, pilot or one-on-one</h2>
+    <div class="grid">
+      <div>
+        <label>Mode
+          <select id="tMode">
+            <option value="tournament">Tournament: 3 phases × 10 rounds, one partner per phase (new partner each phase)</option>
+            <option value="pilot">Pilot: player A always sends, player B always receives</option>
+            <option value="oneonone">One-on-one: two players, roles alternate</option>
+            <option value="botsend">Bot sends: a bot (Dylan's strategy) sends to player A and to player B, separate games</option>
+          </select></label>
+        <div id="tourFields">
+          <label>Number of players (any number from 2; IDs P1, P2, …; if odd, one person sits out each phase) <input id="tPlayers" type="number" value="8" min="2" step="1"></label>
+          <label>Seed (decides who is paired with whom; new random seed each time this page loads) <input id="tSeed" type="number"></label>
+          <a id="schedPreview" target="_blank">Visualise this schedule</a>
+        </div>
+        <div id="pairFields" class="hidden">
+          <label>Player A ID <input id="tA" value="P7"></label>
+          <label>Player B ID <input id="tB" value="P1"></label>
+          <label>Rounds (uses the first N goals) <input id="tRounds" type="number" value="8" min="1" max="21"></label>
+        </div>
+      </div>
+      <div>
+        <label>Session name (optional) <input id="tName" placeholder="e.g. lab1"></label>
+        <label>Seconds per turn <input id="tTurn" type="number" value="9" min="3"></label>
+        <label>Seconds for each player's first turn as Sender and as Receiver <input id="tFirst" type="number" value="20" min="0"></label>
+        <label>Bot players (play Dylan's strategy by themselves; e.g. P7) <input id="tBots" placeholder="none"></label>
+        <label class="inline"><input type="checkbox" id="tSolution"> Show the solution after each round (practice; changes what players learn)</label>
+        <label class="inline"><input type="checkbox" id="tAuto" checked> Auto start when every player is connected (no Start click)</label>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="tDry" class="secondary">Dry run (schedule + checks)</button>
+      <button id="tSetup">Set up session</button>
+      <button id="tStart">Start</button>
+      <button id="tPause" class="secondary">Pause after this round</button>
+      <button id="tResume" class="secondary">Resume</button>
+      <button id="tKickall" class="secondary">Kick everyone (free all slots)</button>
+      <button id="tResults" class="secondary">Send results screen to players</button>
+      <a id="schedLink" class="secondary" style="align-self:center" target="_blank">View tournament schedule</a>
+    </div>
+    <p id="tErr" class="err" style="white-space:pre-wrap"></p>
+    <div id="tDryOut"></div>
+  </section>
+
+  <section class="card">
+    <h2>New ladder session</h2>
+    <div class="grid">
+      <div>
+        <label>Session name <input id="name" value="lab"></label>
+        <label>Participant IDs (one per line, or comma separated; order matters for "chain")
+          <textarea id="participants">P01
+P02
+P03
+P04</textarea></label>
+        <label>Ladder design
+          <select id="design">
+            <option value="chain">Diffusion chain (P1–P2, P2–P3, P3–P4 …)</option>
+            <option value="roundrobin">Round robin (everyone meets everyone)</option>
+            <option value="random">Random rewiring (new random partners each round)</option>
+            <option value="groups">Two groups, then crossed</option>
+            <option value="custom">Custom (type the pairs)</option>
+          </select></label>
+        <label id="customWrap" class="hidden">Custom rounds — one round per line, pairs as A-B separated by commas
+          <textarea id="custom">P01-P02, P03-P04
+P02-P03, P04-P01</textarea></label>
+      </div>
+      <div>
+        <label>Rounds (random / groups designs) <input id="numRounds" type="number" value="4" min="1"></label>
+        <label>Trials per pairing (roles alternate) <input id="trialsPerPairing" type="number" value="18" min="2"></label>
+        <label>Seconds per turn <input id="turnSeconds" type="number" value="10" min="5"></label>
+        <label>Seed (blank = random) <input id="seed" placeholder="random"></label>
+        <label>Trial types</label>
+        <label class="inline"><input type="checkbox" class="tt" value="1"> 1 — receiver circle (location only)</label>
+        <label class="inline"><input type="checkbox" class="tt" value="2"> 2 — both can rotate (location + orientation)</label>
+        <label class="inline"><input type="checkbox" class="tt" value="3" checked> 3 — sender is a circle, receiver is a triangle (guess its direction)</label>
+        <label class="inline"><input type="checkbox" id="sameProblemsEachRound"> Same problem sequence in every round</label>
+        <label class="inline"><input type="checkbox" id="showGoalOnFeedback"> Reveal goals to the receiver on feedback</label>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="previewBtn" class="secondary">Preview ladder</button>
+      <button id="createBtn">Start session</button>
+    </div>
+    <p id="err" class="err"></p>
+    <div id="preview"></div>
+  </section>
+
+  <section class="card" id="statusCard">
+    <h2 id="sTitle">No active session</h2>
+    <p id="sMeta"></p>
+    <p id="downloads"></p>
+    <h3>Lobby</h3>
+    <p id="joinLink"></p>
+    <div id="lobbyCtl"></div>
+    <p id="waitingList"></p>
+    <table id="pTable"></table>
+    <h3 id="ladderHead">Ladder</h3>
+    <div id="ladder"></div>
+  </section>
+</main>
+<script>
+const $ = (s) => document.querySelector(s);
+const key = new URLSearchParams(location.search).get('key') || prompt('Admin key (printed by the server):');
+document.addEventListener('DOMContentLoaded', () => {
+  const l = document.getElementById('schedLink'); if (l) l.href = '/schedule?key=' + encodeURIComponent(key);
+  const seed = document.getElementById('tSeed'); if (seed && !seed.value) seed.value = Math.floor(Math.random() * 1e6);
+  const pv = document.getElementById('schedPreview'), sync = () => { pv.href = `/schedule?key=${encodeURIComponent(key)}&players=${document.getElementById('tPlayers').value}&seed=${seed.value}`; };
+  if (pv) { sync(); seed.addEventListener('input', sync); document.getElementById('tPlayers').addEventListener('input', sync); }
+});
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function cfg() {
+  return {
+    name: $('#name').value,
+    participants: $('#participants').value.split(/[\n,]/).map((s) => s.trim()).filter(Boolean),
+    design: $('#design').value,
+    custom: $('#custom').value,
+    numRounds: $('#numRounds').value,
+    trialsPerPairing: $('#trialsPerPairing').value,
+    turnSeconds: $('#turnSeconds').value,
+    seed: $('#seed').value,
+    trialTypes: [...document.querySelectorAll('.tt:checked')].map((c) => Number(c.value)),
+    sameProblemsEachRound: $('#sameProblemsEachRound').checked,
+    showGoalOnFeedback: $('#showGoalOnFeedback').checked,
+  };
+}
+
+async function api(path, body) {
+  const r = await fetch(`/api/${path}?key=${encodeURIComponent(key)}`, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {});
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error);
+  return j;
+}
+
+$('#design').addEventListener('change', () => $('#customWrap').classList.toggle('hidden', $('#design').value !== 'custom'));
+
+$('#previewBtn').addEventListener('click', async () => {
+  $('#err').textContent = '';
+  try {
+    const { rounds } = await api('preview', cfg());
+    $('#preview').textContent = rounds.map((r, i) => `Round ${i + 1}: ` + r.map((p) => p.join('–')).join('   ')).join('\n');
+  } catch (e) { $('#err').textContent = e.message; }
+});
+
+$('#createBtn').addEventListener('click', async () => {
+  $('#err').textContent = '';
+  if (!confirm('Start a new session? Participants will be routed to this ladder.')) return;
+  try { render(await api('session', cfg())); } catch (e) { $('#err').textContent = e.message; }
+});
+
+// ---- tournament / pilot / one-on-one
+const tcfg = () => ({ mode: $('#tMode').value, playerA: $('#tA').value.trim(), playerB: $('#tB').value.trim(), rounds: $('#tRounds').value,
+  players: $('#tPlayers').value, seed: $('#tSeed').value,
+  name: $('#tName').value.trim(), turnSeconds: $('#tTurn').value, firstTurnSeconds: $('#tFirst').value, showSolution: $('#tSolution').checked, bots: $('#tBots').value, autoStart: $('#tAuto').checked });
+$('#tMode').addEventListener('change', () => {
+  const m = $('#tMode').value;
+  $('#pairFields').classList.toggle('hidden', m === 'tournament');
+  $('#tourFields').classList.toggle('hidden', m !== 'tournament');
+  if (m === 'pilot') { $('#tA').value = 'P7'; $('#tB').value = 'P1'; }
+  if (m === 'oneonone' || m === 'botsend') { $('#tA').value = 'Dylan'; $('#tB').value = 'Pav'; }
+  $('#tSolution').checked = m === 'oneonone';
+});
+
+function scheduleHtml(schedule, goals, current) {
+  const groups = [...new Set(schedule.flatMap((rd) => Object.keys(rd.groups)))];
+  let h = `<div class="sched"><table><tr><th>Round</th><th>Phase</th><th>Goal</th>${groups.map((g) => `<th>Group ${esc(g)}: sender → receiver (sits out)</th>`).join('')}</tr>`;
+  for (const rd of schedule) {
+    if (rd.messageBefore) h += `<tr class="msg"><td colspan="${3 + groups.length}">Swap. Everyone sees: "${esc(rd.messageBefore)}"</td></tr>`;
+    const g0 = goals[rd.round - 1];
+    h += `<tr class="${rd.round === current ? 'now' : ''}"><td>${rd.round}</td><td>${rd.phase}${rd.sitout ? ` <span style="color:#8a93a3">(${esc(rd.sitout)} sits out)</span>` : ''}</td><td>${esc(g0.tile)} · ${esc(g0.direction)}</td>` +
+      groups.map((g) => { const x = rd.groups[g]; return x ? `<td>${esc(x.sender)}${x.botSender ? ' (bot)' : ''} → ${esc(x.receiver)}${x.sitout ? ` <span style="color:#8a93a3">(${esc(x.sitout)})</span>` : ''}</td>` : '<td style="color:#c5cbd3">—</td>'; }).join('') + '</tr>';
+  }
+  return h + '</table></div>';
+}
+
+function checksHtml(checks) {
+  const failed = checks.filter((c) => !c.ok);
+  return (failed.length ? `<div class="banner-fail">SCHEDULE CHECKS FAILED (${failed.length}). Do not run this session.</div>` : '<div class="banner-ok">All schedule checks passed.</div>') +
+    '<ul class="checks">' + checks.map((c) => `<li class="${c.ok ? 'pass' : 'fail'}">${esc(c.name)}${c.ok ? '' : '<br>' + c.problems.map(esc).join('<br>')}</li>`).join('') + '</ul>';
+}
+
+$('#tDry').addEventListener('click', async () => {
+  $('#tErr').textContent = '';
+  try {
+    const p = await api('tournament/dryrun', tcfg());
+    $('#tDryOut').innerHTML = checksHtml(p.checks) + scheduleHtml(p.schedule, p.goals, null);
+  } catch (e) { $('#tErr').textContent = e.message; }
+});
+$('#tSetup').addEventListener('click', async () => {
+  $('#tErr').textContent = '';
+  if (!confirm('Set up a new session? This replaces the current session; players will see a waiting screen until ' + ($('#tAuto').checked ? 'everyone is connected (auto start).' : 'you press Start.'))) return;
+  try { render(await api('tournament/setup', tcfg())); } catch (e) { $('#tErr').textContent = e.message; }
+});
+$('#tResults').addEventListener('click', async () => {
+  $('#tErr').textContent = '';
+  try { const r = await api('tournament/results', {}); render(r); $('#tErr').textContent = 'Results sent to everyone still on the page.'; } catch (e) { $('#tErr').textContent = e.message; }
+});
+for (const a of ['start', 'pause', 'resume', 'kickall']) {
+  $('#t' + a[0].toUpperCase() + a.slice(1)).addEventListener('click', async () => {
+    $('#tErr').textContent = '';
+    try { render(await api('tournament/' + a, {})); } catch (e) { $('#tErr').textContent = e.message; }
+  });
+}
+
+const STATUS_TEXT = { lobby: 'set up, waiting for Start', lobbyAuto: 'set up, starts when every player has pressed Ready', running: 'running', pausing: 'pausing after this round', paused: 'paused', done: 'finished' };
+function renderTournament(s) {
+  const S = s.session;
+  $('#sTitle').textContent = `Active session: ${S.id}`;
+  $('#sMeta').innerHTML = `<b>${esc(S.design)}</b> · ${esc(STATUS_TEXT[s.status === 'lobby' && s.autoStart ? 'lobbyAuto' : s.status] || s.status)} · ` +
+    (s.round ? `round <b>${s.round}</b> of ${s.totalRounds} (phase ${s.phase})` : `${s.totalRounds} rounds`) +
+    ` · ${S.turnMs / 1000}s turns` + (S.design === 'tournament' && s.seed !== null ? ` · seed ${s.seed}` : '') +
+    (s.message ? `<br>Showing everyone: "${esc(s.message)}"` : '');
+  $('#downloads').innerHTML = ['rounds.csv', 'keypresses.csv', 'trials.csv', 'trials.jsonl', 'schedule.json', 'assignments.csv']
+    .map((f) => `<a href="/api/data/${f}?key=${encodeURIComponent(key)}">${f}</a>`).join(' · ');
+  showJoinLink(s);
+  const joined = s.players.filter((p) => p.name).length, online = s.players.filter((p) => p.online && !p.bot).length;
+  $('#lobbyCtl').innerHTML = `<b>${joined}</b> of ${s.players.length} slots named · <b>${online}</b> online · ` +
+    `${s.players.filter((p) => p.ready && !p.bot).length} ready · ` +
+    `<label class="inline" style="display:inline"><input type="checkbox" id="lockBox" ${s.locked ? 'checked' : ''}> Lock lobby (no new players)</label>`;
+  renderWaiting(s.waiting, 'Also waiting (no free slot was open when they last tried, or they joined before setup)');
+  $('#pTable').innerHTML = '<tr><th>ID</th><th>Name</th><th>Group</th><th>Status</th><th></th></tr>' + s.players.map((p) =>
+    `<tr><td>${esc(p.id)}</td><td>${p.name ? esc(p.name) : '<span style="color:#8a93a3">—</span>'}</td><td>${esc(p.group)}</td>` +
+    `<td><span class="pill ${p.online ? 'on' : ''}">${p.bot ? 'bot' : p.playing ? 'playing' : p.online ? (p.ready && s.status === 'lobby' ? 'ready' : 'online') : 'offline'}</span></td>` +
+    `<td>${p.bot ? '' : `<button class="secondary small" data-rename="${esc(p.id)}">Rename</button> ` +
+      (p.name || p.online ? `<button class="secondary small" data-kick="${esc(p.id)}">Kick</button>` : '')}</td></tr>`).join('');
+  const live = s.groups.length ? '<h3>This round</h3><table><tr><th>Group</th><th>Sender → Receiver</th><th>Sits out</th><th>State</th><th>Attempt</th></tr>' +
+    s.groups.map((g) => `<tr><td>${esc(g.g)}</td><td>${esc(g.sender)} → ${esc(g.receiver)}</td><td>${esc(g.sitout || '')}</td><td>${esc(g.state)}</td><td>${g.attempt}</td></tr>`).join('') + '</table>' : '';
+  const res = s.results ? '<h3>Results (what players see at the end)</h3><table><tr><th>Rank</th><th>Name</th><th>Wins</th><th>Play style</th><th>Awards</th></tr>' +
+    s.results.leaderboard.map((p) => { const me = s.results.players[p.id]; return `<tr><td>${p.rank}</td><td>${esc(p.name)}</td><td>${p.wins}/${p.games}</td><td>${esc(me.style.emoji + ' ' + me.style.title)}</td><td>${esc(me.awards.join(', '))}</td></tr>`; }).join('') + '</table>' : '';
+  $('#ladder').innerHTML = res + live + '<h3>Full schedule</h3>' + scheduleHtml(s.schedule, s.goals, s.round);
+}
+
+// one link for every player; they tap their name on the join screen
+function showJoinLink(s) {
+  const u = location.origin + '/';
+  if (!s || !s.tournament) return $('#joinLink').innerHTML = `Players join at <a href="${u}" target="_blank">${esc(u)}</a> and tap their name.`;
+  const d = s.session.design, conf = d === 'pilot' ? s.players[0]?.id : null;
+  $('#joinLink').innerHTML = `Email everyone this one link: <a href="${u}" target="_blank">${esc(u)}</a>. Players type their name and get a free slot at random (the same device or name gets its slot back).` +
+    (conf ? `<br>Confederate link (never given out by the shared link): <a href="${u}?id=${encodeURIComponent(conf)}" target="_blank">${esc(u)}?id=${esc(conf)}</a>` : '');
+}
+
+// names typed on the player page while no session (or no free slot) was open
+function renderWaiting(names, label) {
+  $('#waitingList').innerHTML = names && names.length
+    ? `${label}: <b>${names.map(esc).join(', ')}</b> (${names.length}) <button class="secondary small" id="clearWaiting">Clear</button>` : '';
+}
+
+$('#pTable').addEventListener('click', async (e) => {
+  const k = e.target.dataset.kick, rn = e.target.dataset.rename;
+  $('#tErr').textContent = '';
+  try {
+    if (k && confirm(`Kick ${k}? Their slot is freed and this device cannot rejoin this session.`)) render(await api('tournament/kick', { id: k }));
+    if (rn) { const n = prompt(`Name for ${rn}:`); if (n !== null) render(await api('tournament/rename', { id: rn, name: n })); }
+  } catch (err) { $('#tErr').textContent = err.message; }
+});
+document.addEventListener('change', async (e) => {
+  if (e.target.id !== 'lockBox') return;
+  try { render(await api('tournament/lock', { locked: e.target.checked })); } catch (err) { $('#tErr').textContent = err.message; }
+});
+document.addEventListener('click', async (e) => {
+  if (e.target.id === 'clearWaiting') try { render(await api('waiting/clear', {})); } catch (err) { /* ignore */ }
+});
+
+// ---- lobby card: names appear as people type them on the player page
+let shownNames = [], lastSessionChips = '';
+function renderLobby(s) {
+  const u = location.origin + '/';
+  const open = !s.session;
+  if (open) {
+    const people = s.waitingDetail || [], names = people.map((p) => p.name);
+    $('#lobbyInfo').innerHTML = `Lobby open. Players go to <a href="${u}" target="_blank">${esc(u)}</a> and type their name. <b>${names.length}</b> waiting.`;
+    // add new chips without redrawing the old ones, so each name pops in once
+    if (names.join('\u0000') !== shownNames.join('\u0000')) {
+      $('#lobbyNames').innerHTML = people.map((p) => `<span class="chip" style="${shownNames.includes(p.name) ? 'animation:none' : ''}">${esc(p.name)}<button class="x" title="Remove ${esc(p.name)}" data-lkick="${esc(p.key)}" data-name="${esc(p.name)}">×</button></span>`).join('') || '<span class="muted">Nobody yet…</span>';
+      shownNames = names;
+    }
+    $('#lobbyStart').disabled = names.length < 2;
+    $('#lobbyStart').textContent = `Start game with these ${names.length} player${names.length === 1 ? '' : 's'}`;
+    $('#lobbyOpen').classList.add('hidden');
+  } else {
+    shownNames = [];
+    const ts = s.tournament ? s : null;
+    if (!ts) lastSessionChips = '';
+    $('#lobbyInfo').innerHTML = `A session is set up: <b>${esc(s.session.id)}</b>${ts ? ` (${esc(ts.status)})` : ''}. ` +
+      'To gather a new group by name, open a new lobby (the current session closes; its data stay saved).';
+    const sig = ts ? JSON.stringify(ts.players.map((p) => [p.id, p.name, p.online])) : '';
+    if (sig !== lastSessionChips) {
+      lastSessionChips = sig;
+      $('#lobbyNames').innerHTML = ts ? ts.players.map((p) => `<span class="chip" style="animation:none;${p.online ? '' : 'opacity:.45'}">${esc(p.name || p.id)}` +
+        (p.name || p.online ? `<button class="x" title="Kick ${esc(p.name || p.id)}" data-tkick="${esc(p.id)}" data-name="${esc(p.name || p.id)}">×</button>` : '') + '</span>').join('') : '';
+    }
+    $('#lobbyStart').disabled = true; $('#lobbyStart').textContent = 'Start game';
+    $('#lobbyOpen').classList.remove('hidden');
+  }
+}
+$('#lobbyNames').addEventListener('click', async (e) => {
+  const b = e.target.closest('.x');
+  if (!b) return;
+  $('#lobbyErr').textContent = '';
+  try {
+    if (b.dataset.lkick) render(await api('lobby/kick', { key: b.dataset.lkick }));
+    else if (b.dataset.tkick && confirm(`Kick ${b.dataset.name}? Their slot is freed and they cannot rejoin this session.`)) render(await api('tournament/kick', { id: b.dataset.tkick }));
+  } catch (err) { $('#lobbyErr').textContent = err.message; }
+});
+$('#lobbyOpen').addEventListener('click', async () => {
+  $('#lobbyErr').textContent = '';
+  if (!confirm('Open a new lobby? The current session closes (its data stay saved) and anyone connected to it is disconnected.')) return;
+  try { render(await api('lobby/open', {})); } catch (e) { $('#lobbyErr').textContent = e.message; }
+});
+$('#lobbyStart').addEventListener('click', async () => {
+  $('#lobbyErr').textContent = '';
+  try { render(await api('lobby/start', { ...tcfg(), mode: 'tournament' })); } catch (e) { $('#lobbyErr').textContent = e.message; }
+});
+
+function render(s) {
+  renderLobby(s);
+  if (!s.session) {
+    $('#sTitle').textContent = 'No active session (lobby open, see the top of the page)';
+    for (const id of ['sMeta', 'downloads', 'joinLink', 'lobbyCtl', 'waitingList', 'pTable', 'ladder']) $('#' + id).innerHTML = '';
+    return;
+  }
+  $('#ladderHead').textContent = s.tournament ? '' : 'Ladder';
+  if (s.tournament) return renderTournament(s);
+  const S = s.session;
+  $('#sTitle').textContent = `Active session: ${S.id}`;
+  $('#sMeta').textContent = `${S.design} · ${S.rounds.length} rounds · ${S.trialsPerPairing} trials per pairing · ${S.turnMs / 1000}s turns`;
+  $('#downloads').innerHTML = ['trials.csv', 'pairings.csv', 'keypresses.csv', 'trials.jsonl', 'ladder.json']
+    .map((f) => `<a href="/api/data/${f}?key=${encodeURIComponent(key)}">${f}</a>`).join(' · ');
+  showJoinLink(); renderWaiting([]); $('#lobbyCtl').innerHTML = '';
+  $('#pTable').innerHTML = '<tr><th>ID</th><th>Status</th><th>Next</th></tr>' + s.participants.map((p) =>
+    `<tr><td>${esc(p.id)}</td><td><span class="pill ${p.online ? 'on' : ''}">${p.inRoom ? 'playing' : p.online ? 'online' : 'offline'}</span></td>
+     <td>${p.nextRound ? `round ${p.nextRound} with ${esc(p.nextPartner)}` : 'finished'}</td></tr>`).join('');
+  const byRound = {};
+  for (const [k, p] of Object.entries(s.pairings)) (byRound[p.round] ||= []).push([k, p]);
+  $('#ladder').innerHTML = Object.keys(byRound).map((r) => `<div class="round"><b>${r === 'free' ? 'Free play' : 'Round ' + r}</b><table>` +
+    byRound[r].map(([k, p]) => {
+      const live = s.live[k];
+      const prog = live ? `trial ${live.trial} · ${live.paused ? 'paused (disconnect)' : live.phase}` : p.trials ? `${p.successes}/${p.trials} wins` : '';
+      return `<tr><td style="width:30%">${esc(p.p1)} – ${esc(p.p2)}</td><td><span class="pill ${p.status}">${p.status}</span></td><td>${prog}</td><td>${p.room || ''}</td></tr>`;
+    }).join('') + '</table></div>').join('');
+}
+
+// live status by polling (works on any host, including Vercel)
+async function refresh() {
+  try {
+    const r = await fetch(`/api/status?key=${encodeURIComponent(key)}`, { cache: 'no-store' });
+    const m = await r.json();
+    if (!r.ok) $('#err').textContent = m.error || ('HTTP ' + r.status);
+    else render(m);
+  } catch (e) { /* network blip */ }
+  setTimeout(refresh, 1000);
+}
+refresh();
+</script>
+</body>
+</html>

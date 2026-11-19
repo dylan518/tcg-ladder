@@ -1,0 +1,31 @@
+# secrets / local
+.vercel
+.env*
+.admin_key
+node_modules
+server.log
+*.bak
+__pycache__/
+.DS_Store
+# participant data and anything derived per-player (not public)
+data/
+analysis/*_tournament/
+analysis/pooled/
+analysis/tokens/
+analysis/figures/
+analysis/models/out/
+analysis/models/data/
+out/
+PROJECT_NOTES.md
+# LaTeX build products
+paper/*.aux
+paper/*.bbl
+paper/*.bcf
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.run.xml
+paper/*_log*.json
+analysis/models/slurm/
