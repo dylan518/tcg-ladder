@@ -36,7 +36,7 @@ def fig_hyp():
          [30, 42, 52], [36, 46, 56]),
         ('B. Pact', 'neither carries over:\nresets with each new partner',
          [30, 24, 30], [36, 36, 36]),
-        ('C. Asymmetric', 'signalling carries over,\nreading stays with the old partner',
+        ('C. Asymmetric', 'signalling carries over,\nreading must be relearned',
          [30, 24, 48], [36, 46, 60]),
     ]
     for ax, (t, sub, succ, leg) in zip(axs, acc):
